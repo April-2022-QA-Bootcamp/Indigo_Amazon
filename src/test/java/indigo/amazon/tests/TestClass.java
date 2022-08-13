@@ -7,5 +7,6 @@ public class TestClass {
 	@Test
 	public void test1() {
 		//version
+		//updated
 	}
 }
