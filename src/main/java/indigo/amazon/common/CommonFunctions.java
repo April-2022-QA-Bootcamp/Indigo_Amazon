@@ -59,7 +59,7 @@ public class CommonFunctions {
 	}
 	
 	public String getCurrentUrl(WebDriver driver) {
-		Loggers.getLog("Cuurent URL is : " + driver.getCurrentUrl());
+		Loggers.getLog("Current URL is : " + driver.getCurrentUrl());
 		return driver.getCurrentUrl();
 	}
 
@@ -74,5 +74,7 @@ public class CommonFunctions {
 		}
 
 	}
+
+	 
 
 }
