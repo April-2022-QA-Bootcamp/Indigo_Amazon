@@ -1,5 +1,4 @@
 package indigo.amazon.qa.utils;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,7 +27,6 @@ public class Configuration {
 		}
 
 	}
-
 	public String getConfiguration(String key) {
 		if (key != null) {
 			return properties.getProperty(key);
