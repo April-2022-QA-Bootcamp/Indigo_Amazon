@@ -1,4 +1,4 @@
-package indigo.amazon.qa.utils;
+package indigo.amazon.utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;

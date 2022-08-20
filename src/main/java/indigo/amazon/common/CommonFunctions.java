@@ -1,12 +1,21 @@
-package indigo.amazon.qa.common;
+package indigo.amazon.common;
 
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
-import indigo.amazon.qa.reporting.Loggers;
+import indigo.amazon.reporting.Loggers;
 
 public class CommonFunctions {
+	
+	WebDriver driver;
+	CommonWaits waits;
+	
+	public CommonFunctions(WebDriver driver, CommonWaits waits) {
+		this.driver = driver;
+		this.waits = waits;
+	}
 
 	public void inputValue(WebElement element, String value) {
 		try {
@@ -21,8 +30,9 @@ public class CommonFunctions {
 		}
 	}
 
-	public void clickElement(WebElement element) {
+	public void click(WebElement element) {
 		try {
+			waits.waitUntilClickable(element);
 			element.click();
 			Loggers.getLog(element + " : This element has clicked");
 
@@ -46,6 +56,11 @@ public class CommonFunctions {
 		}
 		return valueString;
 
+	}
+	
+	public String getCurrentUrl(WebDriver driver) {
+		Loggers.getLog("Cuurent URL is : " + driver.getCurrentUrl());
+		return driver.getCurrentUrl();
 	}
 
 	public void clear(WebElement element) {
