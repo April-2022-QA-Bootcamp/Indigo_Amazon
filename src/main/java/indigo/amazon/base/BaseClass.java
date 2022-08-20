@@ -7,15 +7,24 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import indigo.amazon.qa.utils.Configuration;
+import indigo.amazon.common.CommonFunctions;
+import indigo.amazon.common.CommonWaits;
+import indigo.amazon.utils.Configuration;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.netty.util.internal.logging.CommonsLoggerFactory;
 
 public class BaseClass {
 	public Configuration configuration = new Configuration(null);
+	
 	WebDriver driver;
+	WebDriverWait wait;
+	CommonWaits waits;
+	
+	protected CommonFunctions commons;
 
 	@BeforeMethod
 	public void setUp() {
@@ -26,6 +35,8 @@ public class BaseClass {
 				.pageLoadTimeout(Duration.ofSeconds(Integer.parseInt(configuration.getConfiguration("pageLoadWait"))));
 		driver.manage().timeouts()
 				.implicitlyWait(Duration.ofSeconds(Integer.parseInt(configuration.getConfiguration("implicitWait"))));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(Integer.parseInt(configuration.getConfiguration("explicitWait"))));
+		initClasses();
 
 	}
 
@@ -47,6 +58,12 @@ public class BaseClass {
 			driver = new ChromeDriver();
 		}
 		return driver;
+	}
+	
+	private void initClasses() {
+		waits = new CommonWaits(wait);
+		commons = new CommonFunctions(driver, waits);
+		
 	}
 
 	protected WebDriver getDriver() {

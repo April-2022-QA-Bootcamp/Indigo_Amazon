@@ -1,4 +1,4 @@
-package indigo.amazon.qa.reporting;
+package indigo.amazon.reporting;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
