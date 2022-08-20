@@ -13,6 +13,9 @@ import org.testng.annotations.BeforeMethod;
 
 import indigo.amazon.common.CommonFunctions;
 import indigo.amazon.common.CommonWaits;
+import indigo.amazon.objects.CreateAccountPage;
+import indigo.amazon.objects.HomePage;
+import indigo.amazon.objects.RetAndOrderSignInWithCreateAccountPage;
 import indigo.amazon.utils.Configuration;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.netty.util.internal.logging.CommonsLoggerFactory;
@@ -25,6 +28,9 @@ public class BaseClass {
 	CommonWaits waits;
 	
 	protected CommonFunctions commons;
+	protected HomePage homePage;
+	protected RetAndOrderSignInWithCreateAccountPage retAndOrderSignInWithCreateAccountPage;
+	protected CreateAccountPage createAccountPage;
 
 	@BeforeMethod
 	public void setUp() {
@@ -63,6 +69,9 @@ public class BaseClass {
 	private void initClasses() {
 		waits = new CommonWaits(wait);
 		commons = new CommonFunctions(driver, waits);
+		homePage = new HomePage(driver, commons);
+		retAndOrderSignInWithCreateAccountPage = new RetAndOrderSignInWithCreateAccountPage(driver, commons);
+		createAccountPage = new CreateAccountPage(driver, commons);
 		
 	}
 
@@ -71,7 +80,7 @@ public class BaseClass {
 
 	}
 
-	@AfterMethod
+	//@AfterMethod
 	public void terminate() {
 		driver.quit();
 	}
