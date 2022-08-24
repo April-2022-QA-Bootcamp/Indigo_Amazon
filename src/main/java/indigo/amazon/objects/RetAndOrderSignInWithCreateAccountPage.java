@@ -1,11 +1,9 @@
 package indigo.amazon.objects;
 
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 
 import indigo.amazon.common.CommonFunctions;
 
@@ -22,20 +20,14 @@ public class RetAndOrderSignInWithCreateAccountPage {
 
 	@FindBy(id = "createAccountSubmit")
 	WebElement createYourAmazonAccountElement;
-	
-//	private void getCurrentUrl(String expectedUrl) {
-//		assertEquals(commons.getCurrentUrl(driver),expectedUrl);
-//	}
 
 	private void createYourAmazonAccountElement() {
 		commons.click(createYourAmazonAccountElement);
 	}
 
-	
-
 	public void returnAndOrderSignInPageSteps() {
 		createYourAmazonAccountElement();
-		//getCurrentUrl(expectedUrl);
+
 	}
 
 }
