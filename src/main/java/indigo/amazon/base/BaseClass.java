@@ -8,29 +8,29 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import indigo.amazon.common.CommonFunctions;
 import indigo.amazon.common.CommonWaits;
 import indigo.amazon.objects.CreateAccountPage;
 import indigo.amazon.objects.HomePage;
+import indigo.amazon.objects.PrimePage;
 import indigo.amazon.objects.RetAndOrderSignInWithCreateAccountPage;
 import indigo.amazon.utils.Configuration;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import io.netty.util.internal.logging.CommonsLoggerFactory;
 
 public class BaseClass {
 	public Configuration configuration = new Configuration(null);
-	
+
 	WebDriver driver;
 	WebDriverWait wait;
 	CommonWaits waits;
-	
+
 	protected CommonFunctions commons;
 	protected HomePage homePage;
 	protected RetAndOrderSignInWithCreateAccountPage retAndOrderSignInWithCreateAccountPage;
 	protected CreateAccountPage createAccountPage;
+	protected PrimePage primePage;
 
 	@BeforeMethod
 	public void setUp() {
@@ -41,7 +41,8 @@ public class BaseClass {
 				.pageLoadTimeout(Duration.ofSeconds(Integer.parseInt(configuration.getConfiguration("pageLoadWait"))));
 		driver.manage().timeouts()
 				.implicitlyWait(Duration.ofSeconds(Integer.parseInt(configuration.getConfiguration("implicitWait"))));
-		wait = new WebDriverWait(driver, Duration.ofSeconds(Integer.parseInt(configuration.getConfiguration("explicitWait"))));
+		wait = new WebDriverWait(driver,
+				Duration.ofSeconds(Integer.parseInt(configuration.getConfiguration("explicitWait"))));
 		initClasses();
 
 	}
@@ -65,14 +66,15 @@ public class BaseClass {
 		}
 		return driver;
 	}
-	
+
 	private void initClasses() {
 		waits = new CommonWaits(wait);
 		commons = new CommonFunctions(driver, waits);
 		homePage = new HomePage(driver, commons);
 		retAndOrderSignInWithCreateAccountPage = new RetAndOrderSignInWithCreateAccountPage(driver, commons);
 		createAccountPage = new CreateAccountPage(driver, commons);
-		
+		primePage = new PrimePage(driver, commons);
+
 	}
 
 	protected WebDriver getDriver() {
@@ -80,7 +82,7 @@ public class BaseClass {
 
 	}
 
-	//@AfterMethod
+	// @AfterMethod
 	public void terminate() {
 		driver.quit();
 	}
