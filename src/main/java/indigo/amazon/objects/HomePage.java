@@ -16,15 +16,25 @@ public class HomePage {
 		this.commons = commons;
 	}
 
-	@FindBy(xpath = "//span[text()= 'Returns']")
+	@FindBy(xpath = "//span[text()='Returns']")
 	WebElement returnAndOrderElement;
+
+	@FindBy(id = "nav-link-accountList")
+	WebElement signInAccount;
 
 	private void returnAndOrderElement() {
 		commons.click(returnAndOrderElement);
+	}
+
+	private void helloSignIn() {
+		commons.click(signInAccount);
 	}
 
 	public void homePageReturnAndOrderSteps() {
 		returnAndOrderElement();
 	}
 
+	public void signInSteps() {
+		helloSignIn();
+	}
 }

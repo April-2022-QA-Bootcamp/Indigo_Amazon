@@ -16,6 +16,7 @@ import indigo.amazon.objects.CreateAccountPage;
 import indigo.amazon.objects.HomePage;
 import indigo.amazon.objects.PrimePage;
 import indigo.amazon.objects.RetAndOrderSignInWithCreateAccountPage;
+import indigo.amazon.objects.SignInPage;
 import indigo.amazon.utils.Configuration;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -30,6 +31,7 @@ public class BaseClass {
 	protected HomePage homePage;
 	protected RetAndOrderSignInWithCreateAccountPage retAndOrderSignInWithCreateAccountPage;
 	protected CreateAccountPage createAccountPage;
+	protected SignInPage signInPage;
 	protected PrimePage primePage;
 
 	@BeforeMethod
@@ -73,8 +75,8 @@ public class BaseClass {
 		homePage = new HomePage(driver, commons);
 		retAndOrderSignInWithCreateAccountPage = new RetAndOrderSignInWithCreateAccountPage(driver, commons);
 		createAccountPage = new CreateAccountPage(driver, commons);
+		signInPage = new SignInPage(driver, commons);
 		primePage = new PrimePage(driver, commons);
-
 	}
 
 	protected WebDriver getDriver() {
