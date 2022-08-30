@@ -9,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 
 import indigo.amazon.common.CommonFunctions;
 import indigo.amazon.common.CommonWaits;
@@ -33,10 +34,11 @@ public class BaseClass {
 	protected CreateAccountPage createAccountPage;
 	protected SignInPage signInPage;
 	protected PrimePage primePage;
-
+	
+    @Parameters("browser")
 	@BeforeMethod
-	public void setUp() {
-		driver = localDriver("chrome");
+	public void setUp(String browser1) {
+		driver = localDriver(browser1);
 		driver.manage().window().maximize();
 		driver.get(configuration.getConfiguration("url"));
 		driver.manage().timeouts()
